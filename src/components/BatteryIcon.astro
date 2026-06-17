@@ -1,4 +1,7 @@
-<span class="logo-battery" aria-hidden="true" data-node-id="56:391">
+---
+const { class: className = '' } = Astro.props;
+---
+<span class={`logo-battery ${className}`} aria-hidden="true" data-node-id="56:391">
   <span class="logo-battery__cap-top"></span>
   <span class="logo-battery__body">
     <span class="logo-battery__bar"></span>
@@ -12,7 +15,6 @@
 
 <style>
 .logo-battery {
-  animation: battery-twitch 4.8s ease-in-out infinite;
   display: inline-block;
   flex: 0 0 auto;
   height: 55px;
@@ -60,29 +62,5 @@
 .logo-battery__cap-bottom {
   bottom: 0;
   transform: rotate(180deg);
-}
-
-@keyframes battery-twitch {
-  0%, 86%, 100% {
-    transform: rotate(35deg) translate(0, 0);
-  }
-  88% {
-    transform: rotate(32deg) translate(-1px, 1px);
-  }
-  90% {
-    transform: rotate(38deg) translate(1px, -1px);
-  }
-  92% {
-    transform: rotate(34deg) translate(0, 1px);
-  }
-  94% {
-    transform: rotate(35deg) translate(0, 0);
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .logo-battery {
-    animation: none;
-  }
 }
 </style>
