@@ -30,7 +30,7 @@ export const assets = {
     }
   },
   sections: {
-    section1: {
+    overload: {
       desktop:
         "https://res.cloudinary.com/dffqytj06/image/upload/f_auto/q_auto/v1781681162/Rectangle_21_gmo3cl.png",
       tablet:
