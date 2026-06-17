@@ -1,54 +1,113 @@
 ---
 import BatteryIcon from '@/components/BatteryIcon.astro';
+
+type LogoVariant = 'full' | 'compact';
+
+const { variant = 'full' } = Astro.props as { variant?: LogoVariant };
+const isCompact = variant === 'compact';
 ---
-<span class="logo" data-node-id="88:419">
-  <BatteryIcon />
-  <span class="logo-text logo-text--full">Александра<br />ВОлкова</span>
-  <span class="logo-text logo-text--compact">АВ</span>
+<span
+  class:list={['logo', `logo--${variant}`]}
+  data-node-id="56:458"
+  data-logo-vector-fallback="text"
+  aria-label={isCompact ? 'АВ' : 'Александра Волкова'}
+>
+  <span class:list={['logo-mark', isCompact ? 'logo-mark--compact' : 'logo-mark--full']}>
+    <BatteryIcon class="logo-mark__battery" />
+    <span class="logo-mark__top-layer" aria-hidden="true">
+      {isCompact ? (
+        <span class="logo-mark__compact-text" data-node-id="94:593 94:592">АВ</span>
+      ) : (
+        <span class="logo-mark__full-text">
+          <span>Александра</span>
+          <span>Волкова</span>
+        </span>
+      )}
+    </span>
+  </span>
 </span>
 
 <style>
 .logo {
-  align-items: center;
   color: var(--just-dark, #5c5958);
-  display: inline-flex;
-  gap: 14px;
+  display: inline-block;
+  line-height: 0;
   min-width: 0;
 }
 
-.logo-text {
-  font-family: var(--font-main, 'Onest', sans-serif);
+.logo-mark {
+  display: inline-block;
+  flex: 0 0 auto;
+  position: relative;
+}
+
+.logo-mark--compact {
+  height: 55.951px;
+  width: 47.111px;
+}
+
+.logo-mark--full {
+  height: 57px;
+  width: 197px;
+}
+
+.logo-mark__battery {
+  left: 0;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+}
+
+.logo-mark--compact .logo-mark__battery {
+  left: 1px;
+  top: 0;
+}
+
+.logo-mark--full .logo-mark__battery {
+  left: 0;
+  top: 1px;
+}
+
+.logo-mark__top-layer {
+  display: block;
+  pointer-events: none;
+  position: relative;
+  z-index: 2;
+}
+
+.logo-mark__compact-text {
+  color: var(--cardtxtbg, rgba(255, 245, 233, 0.8));
+  display: block;
+  font-family: "Onest", sans-serif;
+  font-size: 32px;
   font-weight: 900;
+  height: 55.951px;
+  letter-spacing: -6.4px;
+  line-height: 1.3;
+  padding-left: 7px;
+  padding-top: 5px;
   text-shadow: 6px 12px 2px rgba(176, 156, 134, 0.4);
   text-transform: uppercase;
   white-space: nowrap;
 }
 
-.logo-text--full {
+.logo-mark__full-text {
   color: var(--just-dark, #5c5958);
+  display: flex;
+  flex-direction: column;
+  font-family: "Onest", sans-serif;
   font-size: 32px;
+  font-weight: 900;
+  height: 57px;
+  justify-content: center;
   line-height: 0.9;
+  padding-left: 3px;
+  padding-top: 2px;
+  text-shadow: 6px 12px 2px rgba(176, 156, 134, 0.4);
 }
 
-.logo-text--compact {
-  color: var(--cardtxtbg, rgba(255, 245, 233, 0.8));
-  display: none;
-  font-size: 32px;
-  letter-spacing: -6.4px;
-  line-height: 1.3;
-}
-
-@media (max-width: 600px) {
-  .logo {
-    gap: 12px;
-  }
-
-  .logo-text--full {
-    display: none;
-  }
-
-  .logo-text--compact {
-    display: inline-block;
-  }
+.logo-mark__full-text span {
+  display: block;
+  white-space: nowrap;
 }
 </style>

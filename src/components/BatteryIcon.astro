@@ -1,4 +1,7 @@
-<span class="logo-battery" aria-hidden="true" data-node-id="56:391">
+---
+const { class: className = '' } = Astro.props;
+---
+<span class={`logo-battery ${className}`} aria-hidden="true" data-node-id="56:391">
   <span class="logo-battery__cap-top"></span>
   <span class="logo-battery__body">
     <span class="logo-battery__bar"></span>
@@ -12,14 +15,14 @@
 
 <style>
 .logo-battery {
-  animation: battery-twitch 4.8s ease-in-out infinite;
-  display: inline-block;
-  flex: 0 0 auto;
+  animation: battery-soft-wobble 3s ease-in-out infinite;
   height: 55px;
-  position: relative;
+  pointer-events: none;
+  position: absolute;
   transform: rotate(35deg);
   transform-origin: center;
   width: 19px;
+  z-index: 1;
 }
 
 .logo-battery__body {
@@ -62,21 +65,18 @@
   transform: rotate(180deg);
 }
 
-@keyframes battery-twitch {
-  0%, 86%, 100% {
-    transform: rotate(35deg) translate(0, 0);
+@keyframes battery-soft-wobble {
+  0%, 78%, 100% {
+    transform: rotate(35deg) translate3d(0, 0, 0);
   }
-  88% {
-    transform: rotate(32deg) translate(-1px, 1px);
+  84% {
+    transform: rotate(32deg) translate3d(-1px, 1px, 0);
   }
   90% {
-    transform: rotate(38deg) translate(1px, -1px);
+    transform: rotate(38deg) translate3d(1px, -1px, 0);
   }
-  92% {
-    transform: rotate(34deg) translate(0, 1px);
-  }
-  94% {
-    transform: rotate(35deg) translate(0, 0);
+  95% {
+    transform: rotate(35deg) translate3d(0, 0, 0);
   }
 }
 

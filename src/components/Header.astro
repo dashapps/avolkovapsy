@@ -5,7 +5,8 @@ import { PRIMARY_CONTACT_LINK } from '@/data/site';
 <header class="header-shell" data-header-mode="scroll" data-node-id="84:363">
   <nav class="site-header" aria-label="Основная навигация">
     <a class="site-header__logo" href="#top" aria-label="Александра Волкова — к началу страницы">
-      <Logo />
+      <span class="site-header__logo-full"><Logo variant="full" /></span>
+      <span class="site-header__logo-compact"><Logo variant="compact" /></span>
     </a>
 
     <a class="site-header__cta" href={PRIMARY_CONTACT_LINK}>Записаться</a>
@@ -91,6 +92,14 @@ import { PRIMARY_CONTACT_LINK } from '@/data/site';
   text-decoration: none;
 }
 
+.site-header__logo-compact {
+  display: none;
+}
+
+.site-header__logo-full {
+  display: inline-flex;
+}
+
 .site-header__cta {
   align-items: center;
   background: var(--primary, #fab842);
@@ -116,6 +125,14 @@ import { PRIMARY_CONTACT_LINK } from '@/data/site';
 @media (max-width: 600px) {
   .site-header {
     min-height: 80px;
+  }
+
+  .site-header__logo-full {
+    display: none;
+  }
+
+  .site-header__logo-compact {
+    display: inline-flex;
   }
 }
 </style>
