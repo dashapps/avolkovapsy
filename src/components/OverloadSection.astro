@@ -1,10 +1,10 @@
 ---
 import { assets } from '@/data/assets';
 
-const overloadAssets = assets.sections.section1;
+const overloadAssets = assets.sections.overload;
 
 if (!overloadAssets.desktop || !overloadAssets.tablet || !overloadAssets.mobile) {
-  throw new Error('Missing viewport-specific section1 Cloudinary asset.');
+  throw new Error('Missing viewport-specific overload Cloudinary asset.');
 }
 
 const chips = [
@@ -59,7 +59,7 @@ const chips = [
         revealObserver.disconnect();
       }
     },
-    { threshold: 0.24 }
+    { threshold: 0.3 }
   );
 
   if (overload) {
@@ -217,22 +217,12 @@ const chips = [
 }
 
 .overload-chip-inner { display: block; }
-.overload.is-visible .overload-chip-inner {
-  animation: overload-chip-wobble 5.5s ease-in-out infinite;
-  animation-delay: var(--chip-float-delay);
-}
-
-.overload-chip--1 { --chip-delay: 180ms; --chip-float-delay: 0ms; --chip-rotate: 10deg; --chip-wobble-x: 2px; left: 68.79px; top: 196.19px; }
-.overload-chip--2 { --chip-delay: 270ms; --chip-float-delay: 220ms; --chip-rotate: 6deg; --chip-wobble-x: -2px; left: 69.13px; top: 289.06px; }
-.overload-chip--3 { --chip-delay: 360ms; --chip-float-delay: 440ms; --chip-rotate: -10deg; --chip-wobble-x: 3px; left: 681px; top: 318px; }
-.overload-chip--4 { --chip-delay: 450ms; --chip-float-delay: 660ms; --chip-rotate: -3deg; --chip-wobble-x: -3px; left: 629px; top: 489px; }
-.overload-chip--5 { --chip-delay: 540ms; --chip-float-delay: 880ms; --chip-rotate: -3deg; --chip-wobble-x: 2px; left: 70px; top: 441px; }
-.overload-chip--6 { --chip-delay: 630ms; --chip-float-delay: 1100ms; --chip-rotate: 5deg; --chip-wobble-x: -2px; left: 671.86px; top: 598px; }
-
-@keyframes overload-chip-wobble {
-  0%, 100% { transform: translate(0, 0) rotate(0deg); }
-  50% { transform: translate(var(--chip-wobble-x, 3px), 3px) rotate(1.2deg); }
-}
+.overload-chip--1 { --chip-delay: 180ms; --chip-rotate: 10deg; left: 68.79px; top: 196.19px; }
+.overload-chip--2 { --chip-delay: 270ms; --chip-rotate: 6deg; left: 69.13px; top: 289.06px; }
+.overload-chip--3 { --chip-delay: 360ms; --chip-rotate: -10deg; left: 681px; top: 411.6px; }
+.overload-chip--4 { --chip-delay: 450ms; --chip-rotate: -3deg; left: 629px; top: 519.3px; }
+.overload-chip--5 { --chip-delay: 540ms; --chip-rotate: -3deg; left: 70px; top: 470.15px; }
+.overload-chip--6 { --chip-delay: 630ms; --chip-rotate: 5deg; left: 677px; top: 598px; }
 
 @media (max-width: 1023px) {
   .overload { height: 715px; min-height: 715px; }
@@ -273,13 +263,7 @@ const chips = [
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .overload-title-line,
-  .overload-chip,
-  .overload-chip-inner {
-    animation: none !important;
-    opacity: 1 !important;
-    transform: none !important;
-    transition: none !important;
-  }
+  .overload-title-line { opacity: 1 !important; transform: translateX(0) !important; transition: none !important; }
+  .overload-chip { opacity: 1 !important; transform: translateY(0) rotate(var(--chip-rotate)) !important; transition: none !important; }
 }
 </style>

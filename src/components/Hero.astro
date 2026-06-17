@@ -6,12 +6,12 @@ import { PRIMARY_CONTACT_LINK } from '@/data/site';
   <div class="hero__stage">
     <div class="hero__visual-layer" aria-hidden="true" data-node-id="62:839">
       <picture class="hero__image hero__image--left" data-node-id="62:840">
-        <source media="(max-width: 600px)" srcset={assets.hero.mobile.leftImage} />
+        <source media="(max-width: 767px)" srcset={assets.hero.mobile.leftImage} />
         <source media="(max-width: 1023px)" srcset={assets.hero.tablet.leftImage} />
         <img src={assets.hero.desktop.leftImage} alt="" loading="eager" decoding="async" fetchpriority="high" />
       </picture>
       <picture class="hero__image hero__image--right" data-node-id="62:841">
-        <source media="(max-width: 600px)" srcset={assets.hero.mobile.rightImage} />
+        <source media="(max-width: 767px)" srcset={assets.hero.mobile.rightImage} />
         <source media="(max-width: 1023px)" srcset={assets.hero.tablet.rightImage} />
         <img src={assets.hero.desktop.rightImage} alt="" loading="eager" decoding="async" fetchpriority="high" />
       </picture>
@@ -366,7 +366,7 @@ import { PRIMARY_CONTACT_LINK } from '@/data/site';
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 767px) {
   .hero {
     height: 690px;
     min-height: 690px;
