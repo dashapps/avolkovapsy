@@ -1,0 +1,19 @@
+---
+import { assets } from '@/data/assets';
+const sectionAssets = assets.sections.product;
+if (!sectionAssets?.desktop || !sectionAssets?.tablet || !sectionAssets?.mobile) throw new Error('Missing required asset key: assets.sections.product.desktop/tablet/mobile');
+---
+<section class="poster-section product-section" aria-label="О способе работы" data-node-id="62:888">
+  <div class="poster-stage">
+    <picture class="poster-image product-image" aria-hidden="true"><source media="(max-width: 767px)" srcset={sectionAssets.mobile} /><source media="(max-width: 1023px)" srcset={sectionAssets.tablet} /><img src={sectionAssets.desktop} alt="" loading="lazy" decoding="async" /></picture>
+    <div class="poster-panel" aria-hidden="true"></div>
+    <p class="product-text product-text-1">Чтобы вернуть состояние,<br />в котором продуктивность снова становится возможной,</p>
+    <p class="product-text product-text-2">важно работать<br />не только через разговор.</p>
+  </div>
+</section>
+<script>
+  document.querySelectorAll<HTMLElement>('.poster-section').forEach((section) => { if (section.dataset.posterRevealBound) return; section.dataset.posterRevealBound='true'; if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) { section.classList.add('is-visible'); return; } const observer=new IntersectionObserver(([entry])=>{ if(entry.isIntersecting){ section.classList.add('is-visible'); observer.disconnect(); } },{threshold:0.18}); observer.observe(section); });
+</script>
+<style>
+.poster-section{box-sizing:border-box;opacity:0;overflow:hidden;position:relative;transform:translateY(16px);transition:opacity 360ms ease,transform 420ms ease;width:100%}.poster-section.is-visible{opacity:1;transform:translateY(0)}.poster-section *{box-sizing:border-box}.poster-stage{height:100%;left:50%;position:absolute;top:0;transform:translateX(-50%);width:1280px}.poster-image{display:block;overflow:hidden;position:absolute;z-index:1}.poster-image img{display:block;height:100%;object-fit:contain;object-position:center;width:100%}.poster-panel{border:1px solid var(--dark-baige,#a69684);border-radius:24px;position:absolute;z-index:2}.product-section{background:var(--bg-product,#cfcdc6);height:650px;min-height:650px}.product-image{height:666px;left:139px;opacity:.8;top:0;width:1093px}.product-section .poster-panel{height:467px;left:187px;top:62px;width:837px}.product-text{color:var(--just-dark,#5c5958);font-family:var(--font-main,'Onest',sans-serif);font-size:24px;font-weight:500;line-height:1.1;margin:0;position:absolute;z-index:4}.product-text-1{height:182px;left:252px;top:145px;width:184px}.product-text-2{height:130px;left:782px;top:380px;width:184px}@media(max-width:1023px){.poster-stage{width:800px}.product-section{height:579px;min-height:579px}.product-image{height:579px;left:-142px;opacity:1;top:0;width:950px}.product-section .poster-panel{height:316px;left:567px;top:62px;width:586px}.product-text-1{height:170px;left:70px;top:399px;width:228px}.product-text-2{left:426px;top:425px}}@media(max-width:767px){.poster-stage{width:390px}.product-image{height:500px;left:-394px;top:93px;width:821px}.product-section .poster-panel{height:322px;left:380px;top:92px;width:399px}.product-text-1{height:100px;left:46px;top:46px;width:345px}.product-text-2{left:99px;top:425px}}@media(prefers-reduced-motion:reduce){.poster-section{opacity:1;transform:none;transition:none}}
+</style>
