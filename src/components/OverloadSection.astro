@@ -1,0 +1,603 @@
+---
+import { assets } from '@/data/assets';
+
+const chips = [
+  { desktop: 'Голова постоянно занята задачами.', compact: 'Голова постоянно занята задачами.' },
+  { desktop: 'Отдых не даёт ощущения восстановления.', compact: 'Отдых не даёт ощущения восстановления.' },
+  {
+    desktop: 'На простые решения уходит больше сил, чем раньше.',
+    compact: 'Ошибки возникают там, где раньше всё было очевидно.',
+  },
+  {
+    desktop: 'Отдых не даёт ощущения восстановления.',
+    compact: 'На простые решения уходит больше сил, чем раньше.',
+  },
+  {
+    desktop: 'Ошибки возникают там, где раньше всё было очевидно.',
+    compact: 'Кажется, что энергии хватает только на обязательное.',
+  },
+  {
+    desktop: 'Кажется, что энергии хватает только на обязательное.',
+    compact: 'Отдых не даёт ощущения восстановления.',
+  },
+];
+---
+<section class="overload" aria-labelledby="overload-title" data-node-id="62:855">
+  <div class="overload__stage">
+    <picture class="overload__image" data-node-id="62:856" aria-hidden="true">
+      <source media="(max-width: 767px)" srcset={assets.sections.section1.mobile} />
+      <source media="(max-width: 1023px)" srcset={assets.sections.section1.tablet} />
+      <img src={assets.sections.section1.desktop} alt="" loading="lazy" decoding="async" />
+    </picture>
+
+    <div class="overload__panel" data-node-id="62:857" aria-hidden="true"></div>
+
+    <div class="overload__headline" data-node-id="62:858">
+      <h2 id="overload-title" data-node-id="62:859">
+        <span class="overload__headline-main">Ты справляешься</span>
+        <span class="overload__headline-sub">но какой ценой?</span>
+      </h2>
+      <div class="overload__headline-line" data-node-id="62:861" aria-hidden="true"></div>
+    </div>
+
+    <p class="overload__side-text" data-node-id="62:862">
+      Можно работать через разговор, через тело или соединять оба подхода — в зависимости от запроса и состояния.
+    </p>
+
+    <div class="overload__chips" aria-label="Признаки перегрузки">
+      {chips.map((chip, index) => (
+        <div class={`overload-chip overload-chip--${index + 1}`} data-chip-index={index + 1}>
+          <span class="overload-chip-inner">
+            <span class="overload-chip-text overload-chip-text--desktop">{chip.desktop}</span>
+            {chip.compact && <span class="overload-chip-text overload-chip-text--compact">{chip.compact}</span>}
+          </span>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  const overload = document.querySelector<HTMLElement>('.overload');
+  const chips = Array.from(document.querySelectorAll<HTMLElement>('.overload-chip'));
+  const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let frame = 0;
+
+  const revealObserver = new IntersectionObserver(
+    ([entry]) => {
+      if (!overload) return;
+      if (entry.isIntersecting) {
+        overload.classList.add('is-visible');
+        revealObserver.disconnect();
+      }
+    },
+    { threshold: 0.24 }
+  );
+
+  if (overload) {
+    if (motionQuery.matches) {
+      overload.classList.add('is-visible');
+    } else {
+      revealObserver.observe(overload);
+    }
+  }
+
+  const updateParallax = () => {
+    frame = 0;
+    if (!overload || motionQuery.matches || !overload.classList.contains('is-visible')) return;
+
+    const rect = overload.getBoundingClientRect();
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    const progress = Math.max(-1, Math.min(1, (viewportHeight / 2 - rect.top - rect.height / 2) / rect.height));
+
+    chips.forEach((chip, index) => {
+      const direction = index % 2 === 0 ? 1 : -1;
+      chip.style.setProperty('--chip-parallax-y', `${(progress * 8 * direction).toFixed(2)}px`);
+      chip.style.setProperty('--chip-parallax-x', `${(progress * 4 * -direction).toFixed(2)}px`);
+    });
+  };
+
+  const requestParallax = () => {
+    if (frame) return;
+    frame = window.requestAnimationFrame(updateParallax);
+  };
+
+  window.addEventListener('scroll', requestParallax, { passive: true });
+  window.addEventListener('resize', requestParallax);
+  requestParallax();
+</script>
+
+<style>
+.overload {
+  background: var(--bg2color, #d4d1c8);
+  height: 751px;
+  min-height: 751px;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.overload,
+.overload * {
+  box-sizing: border-box;
+}
+
+.overload__stage {
+  height: 751px;
+  left: 50%;
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  width: 1280px;
+}
+
+.overload__image {
+  display: block;
+  height: 641px;
+  left: 358px;
+  opacity: 0.8;
+  overflow: hidden;
+  position: absolute;
+  top: 100px;
+  width: 563px;
+  z-index: 1;
+}
+
+.overload__image img {
+  display: block;
+  height: 100%;
+  left: -25%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  width: 150%;
+}
+
+.overload__panel {
+  border: 1px solid var(--dark-baige, #a69684);
+  border-radius: 24px;
+  height: 512px;
+  left: 137px;
+  position: absolute;
+  top: 177px;
+  width: 945px;
+  z-index: 2;
+}
+
+.overload__headline {
+  height: 221px;
+  left: 140px;
+  position: absolute;
+  top: 36px;
+  width: 1000px;
+  z-index: 4;
+}
+
+.overload__headline h2 {
+  color: var(--dark-baige, #a69684);
+  font-family: var(--font-main, 'Onest', sans-serif);
+  font-weight: 900;
+  height: 221px;
+  left: 93px;
+  line-height: 1;
+  margin: 0;
+  position: absolute;
+  top: 0;
+  width: 907px;
+}
+
+.overload__headline-main,
+.overload__headline-sub {
+  display: block;
+  white-space: nowrap;
+}
+
+.overload__headline-main {
+  color: var(--just-dark, #5c5958);
+  font-size: 90px;
+}
+
+.overload__headline-sub {
+  color: var(--dark-baige, #a69684);
+  font-size: 68px;
+}
+
+.overload__headline-line {
+  background: var(--just-dark, #5c5958);
+  height: 1px;
+  left: 0;
+  opacity: 1;
+  position: absolute;
+  top: 75px;
+  width: 910px;
+}
+
+.overload__side-text {
+  color: var(--dark-baige, #a69684);
+  font-family: var(--font-main, 'Onest', sans-serif);
+  font-size: 16px;
+  font-weight: 900;
+  height: 123px;
+  left: 833px;
+  line-height: 1.1;
+  margin: 0;
+  position: absolute;
+  top: 207px;
+  width: 214px;
+  z-index: 4;
+}
+
+.overload__chips {
+  inset: 0;
+  position: absolute;
+  z-index: 5;
+}
+
+.overload-chip {
+  --chip-parallax-x: 0px;
+  --chip-parallax-y: 0px;
+  align-items: center;
+  background: var(--just-dark, #5c5958);
+  border-radius: 24px;
+  box-shadow: 8px 18px 1px rgba(176, 156, 134, 0.4);
+  color: var(--beigebg, #e5d7c7);
+  display: flex;
+  font-family: var(--font-main, 'Onest', sans-serif);
+  font-size: 18px;
+  font-weight: 400;
+  justify-content: center;
+  line-height: 1.3;
+  opacity: 0;
+  padding: 18px 36px;
+  position: absolute;
+  text-align: center;
+  transform: translate3d(var(--chip-enter-x, 0), -26px, 0) rotate(var(--chip-rotate));
+  transition:
+    opacity 260ms ease,
+    transform 420ms cubic-bezier(.2, .8, .2, 1);
+  transition-delay: var(--chip-delay);
+  will-change: transform, opacity;
+}
+
+.overload.is-visible .overload-chip {
+  opacity: 1;
+  transform: translate3d(var(--chip-parallax-x), var(--chip-parallax-y), 0) rotate(var(--chip-rotate));
+}
+
+.overload-chip-inner {
+  display: block;
+}
+
+.overload-chip-text {
+  display: block;
+}
+
+.overload-chip-text--compact {
+  display: none;
+}
+
+.overload.is-visible .overload-chip-inner {
+  animation: overload-chip-wobble 5.5s ease-in-out infinite;
+  animation-delay: var(--chip-float-delay);
+}
+
+.overload-chip--1 {
+  --chip-delay: 80ms;
+  --chip-float-delay: 0ms;
+  --chip-rotate: 10deg;
+  --chip-wobble-x: 2px;
+  height: 124.611px;
+  left: 68.79px;
+  top: 196.19px;
+  width: 387.427px;
+}
+
+.overload-chip--2 {
+  --chip-delay: 140ms;
+  --chip-float-delay: 220ms;
+  --chip-rotate: 6deg;
+  --chip-wobble-x: -2px;
+  height: 104.878px;
+  left: 69.13px;
+  top: 289.06px;
+  width: 445.746px;
+}
+
+.overload-chip--3 {
+  --chip-delay: 220ms;
+  --chip-float-delay: 440ms;
+  --chip-rotate: -10deg;
+  --chip-wobble-x: 3px;
+  height: 151.7px;
+  left: 681px;
+  top: 318px;
+  width: 541.057px;
+}
+
+.overload-chip--4 {
+  --chip-delay: 300ms;
+  --chip-float-delay: 660ms;
+  --chip-rotate: -3deg;
+  --chip-wobble-x: -3px;
+  height: 82.052px;
+  left: 778px;
+  top: 459px;
+  width: 444.482px;
+}
+
+.overload-chip--5 {
+  --chip-delay: 380ms;
+  --chip-float-delay: 880ms;
+  --chip-rotate: -3deg;
+  --chip-wobble-x: 2px;
+  height: 88.07px;
+  left: 70px;
+  top: 441px;
+  width: 559.324px;
+}
+
+.overload-chip--6 {
+  --chip-delay: 460ms;
+  --chip-float-delay: 1100ms;
+  --chip-rotate: 5deg;
+  --chip-wobble-x: -2px;
+  height: 106.45px;
+  left: 671.86px;
+  top: 598px;
+  width: 550.061px;
+}
+
+@keyframes overload-chip-wobble {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(var(--chip-wobble-x, 3px));
+  }
+}
+
+@media (max-width: 1023px) {
+  .overload {
+    height: 715px;
+    min-height: 715px;
+  }
+
+  .overload__stage {
+    height: 715px;
+    width: 800px;
+  }
+
+  .overload__image {
+    height: 641px;
+    left: 434px;
+    top: 65px;
+    width: 563px;
+  }
+
+  .overload__panel {
+    height: 396px;
+    left: 65px;
+    top: 177px;
+    width: 872px;
+  }
+
+  .overload__headline {
+    height: 221px;
+    left: 90px;
+    top: 29px;
+    width: 907px;
+  }
+
+  .overload__headline h2 {
+    left: 0;
+    width: 907px;
+  }
+
+  .overload__headline-main {
+    font-size: 68px;
+  }
+
+  .overload__headline-sub {
+    font-size: 42px;
+  }
+
+  .overload__headline-line {
+    left: -90px;
+    top: 57px;
+    width: 910px;
+  }
+
+  .overload__side-text {
+    height: 56px;
+    left: 142px;
+    top: 605px;
+    width: 292px;
+  }
+
+  .overload-chip {
+    font-size: 16px;
+    padding: 12px 36px;
+  }
+
+  .overload-chip-text--desktop {
+    display: none;
+  }
+
+  .overload-chip-text--compact {
+    display: block;
+  }
+
+  .overload-chip--1 {
+    height: 104.746px;
+    left: 39px;
+    top: 140px;
+    width: 350.527px;
+  }
+
+  .overload-chip--2 {
+    height: 86.669px;
+    left: 31px;
+    top: 219px;
+    width: 403.507px;
+  }
+
+  .overload-chip--3 {
+    --chip-rotate: -3deg;
+    height: 71.263px;
+    left: 28px;
+    top: 302px;
+    width: 504.666px;
+  }
+
+  .overload-chip--4 {
+    --chip-rotate: -2deg;
+    height: 61.969px;
+    left: 312px;
+    top: 375px;
+    width: 488.274px;
+  }
+
+  .overload-chip--5 {
+    --chip-rotate: 5deg;
+    height: 87.884px;
+    left: 280px;
+    top: 532px;
+    width: 496.042px;
+  }
+
+  .overload-chip--6 {
+    --chip-rotate: -3deg;
+    height: 65.925px;
+    left: 88px;
+    top: 439px;
+    width: 402.806px;
+  }
+}
+
+@media (max-width: 767px) {
+  .overload {
+    height: 800px;
+    min-height: 800px;
+  }
+
+  .overload__stage {
+    height: 800px;
+    width: 390px;
+  }
+
+  .overload__image {
+    height: 551px;
+    left: 47px;
+    top: 5px;
+    width: 427px;
+  }
+
+  .overload__panel {
+    height: 552px;
+    left: 65px;
+    top: 140px;
+    width: 355px;
+  }
+
+  .overload__headline {
+    height: 104px;
+    left: 26.58px;
+    top: 28px;
+    width: 343.701px;
+  }
+
+  .overload__headline h2 {
+    height: 104px;
+    width: 343.701px;
+  }
+
+  .overload__headline-main {
+    font-size: 36px;
+  }
+
+  .overload__headline-sub {
+    font-size: 24px;
+  }
+
+  .overload__headline-line {
+    left: -26.58px;
+    top: 56.91px;
+    width: 390px;
+  }
+
+  .overload__side-text {
+    height: 51px;
+    left: 39px;
+    top: 723px;
+    width: 339px;
+  }
+
+  .overload-chip {
+    font-size: 16px;
+    padding: 12px 36px;
+  }
+
+  .overload-chip-text--desktop {
+    display: none;
+  }
+
+  .overload-chip-text--compact {
+    display: block;
+  }
+
+  .overload-chip--1 {
+    height: 104.746px;
+    left: 6px;
+    top: 160px;
+    width: 350.527px;
+  }
+
+  .overload-chip--2 {
+    height: 86.669px;
+    left: 22px;
+    top: 236px;
+    width: 403.507px;
+  }
+
+  .overload-chip--3 {
+    height: 84.332px;
+    left: 6px;
+    top: 316px;
+    width: 354.972px;
+  }
+
+  .overload-chip--4 {
+    height: 77.197px;
+    left: 6px;
+    top: 471px;
+    width: 324.107px;
+  }
+
+  .overload-chip--5 {
+    height: 90px;
+    left: 47px;
+    top: 628px;
+    width: 301.466px;
+  }
+
+  .overload-chip--6 {
+    height: 80.93px;
+    left: 123px;
+    top: 542px;
+    width: 290.061px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overload-chip,
+  .overload-chip-inner {
+    animation: none !important;
+    opacity: 1 !important;
+    transition: none !important;
+  }
+
+  .overload-chip {
+    transform: rotate(var(--chip-rotate)) !important;
+  }
+}
+</style>
