@@ -219,3 +219,95 @@ Prefer exact implementation over interpretation.
 You are an implementation engineer.
 
 Not a designer.
+
+# Cloudinary Asset Policy
+
+## Source Of Truth
+
+All visual assets are stored in Cloudinary.
+
+GitHub is NOT the source of truth for images.
+
+Never search for images inside repository folders if Cloudinary assets exist.
+
+---
+
+## Asset Priority
+
+Priority order:
+
+1. Cloudinary
+2. Local project assets
+3. Ask for asset
+
+Never create placeholders.
+
+Never create CSS replacements.
+
+Never create temporary illustrations.
+
+---
+
+## Folder Structure
+
+Cloudinary:
+
+Avolkovapsy/
+
+├── Desktop/
+├── Tablet/
+└── Mobile/
+
+Use assets from these folders.
+
+---
+
+## Missing Asset Rule
+
+If an asset is referenced but missing:
+
+STOP.
+
+Ask which Cloudinary asset should be used.
+
+Do not continue implementation.
+
+---
+
+## Hero Sections
+
+Hero images must always be loaded from Cloudinary.
+
+Forbidden:
+
+- CSS silhouettes
+- gradient placeholders
+- generated mockups
+- substitute illustrations
+
+Use real uploaded assets only.
+
+---
+
+## Implementation
+
+Images must be referenced through Cloudinary URLs.
+
+Do not duplicate image files into repository unless explicitly requested.
+
+Cloudinary remains the canonical source.
+
+---
+
+## Verification Before PR
+
+Before creating PR verify:
+
+- every image loads successfully
+- no placeholder graphics exist
+- no CSS replacement shapes exist
+- no temporary assets exist
+
+If any placeholder remains:
+
+PR must not be created.
