@@ -1,36 +1,398 @@
 ---
 import { assets } from '@/data/assets';
 import { PRIMARY_CONTACT_LINK } from '@/data/site';
-
-const hasHeroImages = Object.values(assets.hero).some((breakpoint) => breakpoint.leftImage || breakpoint.rightImage);
 ---
-<section id="top" class="section hero reveal" aria-labelledby="hero-title">
-  <div class="container hero__grid">
-    <div class="hero__copy card">
-      <p>Для тех, кто живёт в напряжении, высокой ответственности и постоянном потоке задач</p>
-      <p>и чувствует, что обычный отдых больше не восстанавливает.</p>
+<section id="top" class="hero reveal" aria-labelledby="hero-title" data-node-id="62:838">
+  <div class="hero__stage">
+    <div class="hero__visual-layer" aria-hidden="true" data-node-id="62:839">
+      <picture class="hero__image hero__image--left" data-node-id="62:840">
+        <source media="(max-width: 600px)" srcset={assets.hero.mobile.leftImage} />
+        <source media="(max-width: 1023px)" srcset={assets.hero.tablet.leftImage} />
+        <img src={assets.hero.desktop.leftImage} alt="" loading="eager" decoding="async" fetchpriority="high" />
+      </picture>
+      <picture class="hero__image hero__image--right" data-node-id="62:841">
+        <source media="(max-width: 600px)" srcset={assets.hero.mobile.rightImage} />
+        <source media="(max-width: 1023px)" srcset={assets.hero.tablet.rightImage} />
+        <img src={assets.hero.desktop.rightImage} alt="" loading="eager" decoding="async" fetchpriority="high" />
+      </picture>
     </div>
-    {hasHeroImages && (
-      <div class="hero__scene" aria-hidden="true">
-        {assets.hero.desktop.leftImage && <img class="hero__image hero__image--left hero__image--desktop" src={assets.hero.desktop.leftImage} alt="" loading="eager" decoding="async" />}
-        {assets.hero.desktop.rightImage && <img class="hero__image hero__image--right hero__image--desktop" src={assets.hero.desktop.rightImage} alt="" loading="eager" decoding="async" />}
-        {assets.hero.tablet.leftImage && <img class="hero__image hero__image--left hero__image--tablet" src={assets.hero.tablet.leftImage} alt="" loading="eager" decoding="async" />}
-        {assets.hero.tablet.rightImage && <img class="hero__image hero__image--right hero__image--tablet" src={assets.hero.tablet.rightImage} alt="" loading="eager" decoding="async" />}
-        {assets.hero.mobile.leftImage && <img class="hero__image hero__image--left hero__image--mobile" src={assets.hero.mobile.leftImage} alt="" loading="eager" decoding="async" />}
-        {assets.hero.mobile.rightImage && <img class="hero__image hero__image--right hero__image--mobile" src={assets.hero.mobile.rightImage} alt="" loading="eager" decoding="async" />}
+
+    <div class="hero__panel hero__panel--top" aria-hidden="true" data-node-id="62:842"></div>
+    <div class="hero__panel hero__panel--bottom" aria-hidden="true" data-node-id="62:843"></div>
+
+    <div class="hero__intro" data-node-id="62:852">
+      <p data-node-id="62:853">Для тех, кто живёт<br />в напряжении, высокой ответственности<br />и постоянном потоке задач</p>
+      <p data-node-id="62:854">и чувствует, что обычный отдых больше<br />не восстанавливает.</p>
+    </div>
+
+    <div class="hero__headline" data-node-id="62:844">
+      <div class="hero__title-group" data-node-id="62:845">
+        <h1 id="hero-title" data-node-id="62:846">ПЕРЕЗАГРУЗКА</h1>
+        <p data-node-id="62:847">без паузы от жизни</p>
       </div>
-    )}
-    <div class="hero__title">
-      <h1 id="hero-title">Перезагрузка</h1>
-      <p>без паузы от жизни</p>
-      <div class="hero__actions">
-        <a class="btn btn-primary" href={PRIMARY_CONTACT_LINK}>Индивидуально</a>
-        <a class="btn btn-dark" href="#schedule">В группе</a>
+      <div class="hero__buttons" data-node-id="62:848">
+        <a class="hero__button hero__button--primary" href={PRIMARY_CONTACT_LINK} data-node-id="62:849">Индивидуально</a>
+        <a class="hero__button hero__button--dark" href="#schedule" data-node-id="62:850">В группе</a>
       </div>
     </div>
   </div>
 </section>
+
 <style>
-.hero{padding-top:24px}.hero__grid{min-height:620px;position:relative;display:grid;align-items:center;background:linear-gradient(120deg,#ece6da,#f8f3ea);overflow:hidden;border-radius:36px;padding:clamp(20px,5vw,56px)}
-.hero__copy{max-width:520px;padding:24px;margin-left:auto;font-weight:800;color:var(--color-muted)}.hero__scene{position:absolute;inset:10% 4% 8%;pointer-events:none}.hero__image{position:absolute;bottom:0;max-height:100%;width:auto;object-fit:contain}.hero__image--left{left:0}.hero__image--right{right:0}.hero__image--tablet,.hero__image--mobile{display:none}.hero__title{position:relative;align-self:end;text-align:center;z-index:2}.hero h1{font-size:clamp(3.2rem,12vw,9rem);line-height:.8;margin:0;text-transform:uppercase;color:white;text-shadow:0 8px 30px rgba(48,52,59,.18);letter-spacing:-.07em}.hero__title p{font-size:clamp(1.4rem,4vw,3rem);font-weight:800;margin:.2em 0 1rem}.hero__actions{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}@media(max-width:1024px){.hero__image--desktop{display:none}.hero__image--tablet{display:block}}@media(max-width:720px){.hero__grid{min-height:680px}.hero__copy{margin:0;font-size:.9rem}.hero__scene{inset:24% 2% 18%}.hero__image--tablet{display:none}.hero__image--mobile{display:block}.hero__actions .btn{min-width:150px}}
+.hero {
+  --hero-scale: min(1, calc((100vw - 32px) / 1280));
+  --bg1: #dbd9d2;
+  --primary: #fab842;
+  --just-dark: #5c5958;
+  --dark-baige: #a69684;
+  --cardtxtbg: rgba(255, 245, 233, 0.8);
+  --panel-top: rgba(255, 245, 233, 0.3);
+  --panel-bottom: rgba(224, 218, 197, 0.6);
+  --shadow-title: 12px 24px 2px rgba(176, 156, 134, 0.4);
+  --radius-panel: 24px;
+  --radius-button: 24px;
+  background: var(--bg1);
+  display: grid;
+  justify-items: center;
+  overflow: hidden;
+  padding: 0;
+}
+
+.hero__stage {
+  background: var(--bg1);
+  block-size: calc(757px * var(--hero-scale));
+  inline-size: min(1280px, 100vw);
+  overflow: hidden;
+  position: relative;
+  transform-origin: top center;
+}
+
+.hero__visual-layer,
+.hero__panel,
+.hero__intro,
+.hero__headline {
+  position: absolute;
+}
+
+.hero__visual-layer {
+  align-items: center;
+  background: var(--bg1);
+  display: flex;
+  inset: 0;
+  justify-content: space-between;
+}
+
+.hero__image {
+  display: block;
+  overflow: hidden;
+  position: absolute;
+}
+
+.hero__image img {
+  display: block;
+  height: 100%;
+  object-fit: cover;
+  position: absolute;
+  width: 100%;
+}
+
+.hero__image--left {
+  height: calc(736px * var(--hero-scale));
+  left: calc(0px * var(--hero-scale));
+  top: calc(10.5px * var(--hero-scale));
+  width: calc(660px * var(--hero-scale));
+}
+
+.hero__image--left img {
+  height: 101.5%;
+  left: -5.55%;
+  top: -0.79%;
+  width: 92.48%;
+}
+
+.hero__image--right {
+  height: calc(710px * var(--hero-scale));
+  left: calc(752px * var(--hero-scale));
+  top: calc(23.5px * var(--hero-scale));
+  width: calc(528px * var(--hero-scale));
+}
+
+.hero__image--right img {
+  height: 109.25%;
+  left: -1.44%;
+  top: -4.57%;
+  width: 107.04%;
+}
+
+.hero__panel--top {
+  background: var(--panel-top);
+  border-bottom: 1px solid var(--dark-baige);
+  border-left: 1px solid var(--dark-baige);
+  border-radius: 0 0 var(--radius-panel) var(--radius-panel);
+  border-right: 1px solid var(--dark-baige);
+  height: calc(281px * var(--hero-scale));
+  left: calc(340px * var(--hero-scale));
+  top: 0;
+  width: calc(604px * var(--hero-scale));
+}
+
+.hero__panel--bottom {
+  background: var(--panel-bottom);
+  border: 1px solid var(--dark-baige);
+  border-radius: var(--radius-panel);
+  height: calc(225.155px * var(--hero-scale));
+  left: calc(324px * var(--hero-scale));
+  top: calc(437.766px * var(--hero-scale));
+  width: calc(633px * var(--hero-scale));
+}
+
+.hero__intro {
+  color: var(--just-dark);
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-main, Onest, sans-serif);
+  font-size: calc(21px * var(--hero-scale));
+  font-weight: 400;
+  gap: calc(28px * var(--hero-scale));
+  height: calc(157.503px * var(--hero-scale));
+  left: calc(407px * var(--hero-scale));
+  line-height: 1.3;
+  top: calc(54.052px * var(--hero-scale));
+  width: calc(467px * var(--hero-scale));
+  z-index: 2;
+}
+
+.hero__intro p {
+  margin: 0;
+}
+
+.hero__headline {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: calc(26px * var(--hero-scale));
+  height: calc(319.234px * var(--hero-scale));
+  left: calc(234px * var(--hero-scale));
+  top: calc(334.174px * var(--hero-scale));
+  width: calc(811px * var(--hero-scale));
+  z-index: 3;
+}
+
+.hero__title-group {
+  text-align: center;
+  width: 100%;
+}
+
+.hero h1 {
+  color: var(--cardtxtbg);
+  font-family: var(--font-main, Onest, sans-serif);
+  font-size: calc(100px * var(--hero-scale));
+  font-weight: 900;
+  letter-spacing: -0.045em;
+  line-height: 1.3;
+  margin: 0;
+  text-align: right;
+  text-shadow: var(--shadow-title);
+  text-transform: uppercase;
+}
+
+.hero__title-group p {
+  color: var(--just-dark);
+  font-family: var(--font-main, Onest, sans-serif);
+  font-size: calc(40px * var(--hero-scale));
+  font-weight: 400;
+  line-height: 1.3;
+  margin: 0;
+  text-align: center;
+}
+
+.hero__buttons {
+  align-items: flex-start;
+  display: flex;
+  gap: calc(24px * var(--hero-scale));
+  height: calc(94px * var(--hero-scale));
+  justify-content: center;
+  width: calc(637px * var(--hero-scale));
+}
+
+.hero__button {
+  align-items: center;
+  border-radius: var(--radius-button);
+  display: flex;
+  font-family: var(--font-main, Onest, sans-serif);
+  font-size: calc(32px * var(--hero-scale));
+  font-weight: 600;
+  height: calc(78px * var(--hero-scale));
+  justify-content: center;
+  line-height: 1.3;
+  padding: calc(18px * var(--hero-scale)) calc(24px * var(--hero-scale));
+  text-decoration: none;
+  transition: transform 0.2s ease;
+  white-space: nowrap;
+  width: calc(306.5px * var(--hero-scale));
+}
+
+.hero__button:hover,
+.hero__button:focus-visible {
+  transform: translateY(-2px);
+}
+
+.hero__button--primary {
+  background: var(--primary);
+  color: var(--just-dark);
+}
+
+.hero__button--dark {
+  background: var(--just-dark);
+  color: var(--primary);
+}
+
+@media (max-width: 1023px) {
+  .hero {
+    --hero-scale: min(1, calc(100vw / 800));
+  }
+
+  .hero__stage {
+    block-size: calc(670px * var(--hero-scale));
+    inline-size: min(800px, 100vw);
+  }
+
+  .hero__image--left {
+    height: calc(650px * var(--hero-scale));
+    left: 0;
+    top: calc(10px * var(--hero-scale));
+    width: calc(412px * var(--hero-scale));
+  }
+
+  .hero__image--right {
+    height: calc(620px * var(--hero-scale));
+    left: calc(470px * var(--hero-scale));
+    top: calc(24px * var(--hero-scale));
+    width: calc(330px * var(--hero-scale));
+  }
+
+  .hero__panel--top {
+    height: calc(250px * var(--hero-scale));
+    left: calc(210px * var(--hero-scale));
+    width: calc(380px * var(--hero-scale));
+  }
+
+  .hero__panel--bottom {
+    height: calc(198px * var(--hero-scale));
+    left: calc(96px * var(--hero-scale));
+    top: calc(430px * var(--hero-scale));
+    width: calc(608px * var(--hero-scale));
+  }
+
+  .hero__intro {
+    font-size: calc(18px * var(--hero-scale));
+    gap: calc(24px * var(--hero-scale));
+    left: calc(248px * var(--hero-scale));
+    top: calc(50px * var(--hero-scale));
+    width: calc(304px * var(--hero-scale));
+  }
+
+  .hero__headline {
+    gap: calc(22px * var(--hero-scale));
+    left: calc(68px * var(--hero-scale));
+    top: calc(340px * var(--hero-scale));
+    width: calc(664px * var(--hero-scale));
+  }
+
+  .hero h1 {
+    font-size: calc(82px * var(--hero-scale));
+  }
+
+  .hero__title-group p {
+    font-size: calc(34px * var(--hero-scale));
+  }
+
+  .hero__buttons {
+    gap: calc(20px * var(--hero-scale));
+    width: calc(590px * var(--hero-scale));
+  }
+
+  .hero__button {
+    font-size: calc(28px * var(--hero-scale));
+    height: calc(72px * var(--hero-scale));
+    width: calc(285px * var(--hero-scale));
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    --hero-scale: min(1, calc(100vw / 390));
+  }
+
+  .hero__stage {
+    block-size: calc(690px * var(--hero-scale));
+    inline-size: min(390px, 100vw);
+  }
+
+  .hero__image--left {
+    height: calc(520px * var(--hero-scale));
+    left: calc(-58px * var(--hero-scale));
+    top: calc(128px * var(--hero-scale));
+    width: calc(294px * var(--hero-scale));
+  }
+
+  .hero__image--right {
+    height: calc(536px * var(--hero-scale));
+    left: calc(174px * var(--hero-scale));
+    top: calc(126px * var(--hero-scale));
+    width: calc(248px * var(--hero-scale));
+  }
+
+  .hero__panel--top {
+    height: calc(230px * var(--hero-scale));
+    left: calc(24px * var(--hero-scale));
+    width: calc(342px * var(--hero-scale));
+  }
+
+  .hero__panel--bottom {
+    height: calc(178px * var(--hero-scale));
+    left: calc(16px * var(--hero-scale));
+    top: calc(478px * var(--hero-scale));
+    width: calc(358px * var(--hero-scale));
+  }
+
+  .hero__intro {
+    font-size: calc(16px * var(--hero-scale));
+    gap: calc(20px * var(--hero-scale));
+    left: calc(44px * var(--hero-scale));
+    top: calc(42px * var(--hero-scale));
+    width: calc(302px * var(--hero-scale));
+  }
+
+  .hero__headline {
+    gap: calc(18px * var(--hero-scale));
+    left: calc(11px * var(--hero-scale));
+    top: calc(376px * var(--hero-scale));
+    width: calc(368px * var(--hero-scale));
+  }
+
+  .hero h1 {
+    font-size: calc(47px * var(--hero-scale));
+    letter-spacing: -0.04em;
+    text-align: center;
+    text-shadow: calc(6px * var(--hero-scale)) calc(12px * var(--hero-scale)) calc(1px * var(--hero-scale)) rgba(176, 156, 134, 0.4);
+  }
+
+  .hero__title-group p {
+    font-size: calc(28px * var(--hero-scale));
+  }
+
+  .hero__buttons {
+    flex-direction: column;
+    gap: calc(12px * var(--hero-scale));
+    height: auto;
+    width: calc(306px * var(--hero-scale));
+  }
+
+  .hero__button {
+    font-size: calc(24px * var(--hero-scale));
+    height: calc(62px * var(--hero-scale));
+    width: calc(306px * var(--hero-scale));
+  }
+}
 </style>
