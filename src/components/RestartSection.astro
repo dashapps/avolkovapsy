@@ -18,7 +18,7 @@ if (!sectionAssets?.desktop || !sectionAssets?.tablet || !sectionAssets?.mobile)
       Иногда система настолько привыкает жить в&nbsp;напряжении, что начинает считать его нормой.
     </p>
     <h2 id="restart-title" class="restart-title">
-      <span class="restart-title-line restart-title-line--main">Это не вопрос</span>
+      <span class="restart-title-line restart-title-line--main">Это не&nbsp;вопрос</span>
       <strong class="restart-title-line restart-title-line--accent">силы воли</strong>
     </h2>
     <div class="restart-line" aria-hidden="true"></div>
@@ -28,27 +28,7 @@ if (!sectionAssets?.desktop || !sectionAssets?.tablet || !sectionAssets?.mobile)
     </p>
   </div>
 </section>
-<script>
-  const section = document.querySelector<HTMLElement>('[data-restart-section]');
 
-  if (section) {
-    if (!('IntersectionObserver' in window)) {
-      section.classList.add('is-visible');
-    } else {
-      const observer = new IntersectionObserver(
-        ([entry]) => {
-          if (entry.isIntersecting && entry.intersectionRatio >= 0.3) {
-            section.classList.add('is-visible');
-            observer.disconnect();
-          }
-        },
-        { threshold: [0, 0.3] }
-      );
-
-      observer.observe(section);
-    }
-  }
-</script>
 <style>
   .restart,
   .restart * {
