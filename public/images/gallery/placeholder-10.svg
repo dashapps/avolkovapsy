@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 600" role="img" aria-label="Фото события 10">
+  <rect width="480" height="600" rx="28" fill="#f4dfb9"/>
+  <circle cx="332" cy="170" r="74" fill="#d48a2b" opacity=".75"/>
+  <path d="M132 432c88-18 139-74 161-168" stroke="#30343b" stroke-width="32" stroke-linecap="round" fill="none" opacity=".72"/>
+  <rect x="54" y="486" width="372" height="46" rx="18" fill="#fff6e6" opacity=".9"/>
+  <text x="80" y="516" font-family="Arial, sans-serif" font-size="24" fill="#30343b">Галерея событий</text>
+</svg>

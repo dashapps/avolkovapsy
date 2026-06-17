@@ -1,0 +1,58 @@
+---
+import '../styles/global.css';
+import { siteMeta, person } from '@/data/site';
+import JsonLd from '@/components/seo/JsonLd.astro';
+
+const {
+  title = siteMeta.title,
+  description = siteMeta.description,
+  canonical = siteMeta.siteUrl,
+  image = siteMeta.image,
+} = Astro.props;
+
+const organizationSchema = {
+  '@context': 'https://schema.org',
+  '@type': ['LocalBusiness', 'ProfessionalService'],
+  name: person.name,
+  description,
+  url: canonical,
+  image: `${siteMeta.siteUrl}${image}`,
+  areaServed: person.areaServed,
+  sameAs: person.sameAs,
+};
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: person.name,
+  jobTitle: person.jobTitle,
+  url: canonical,
+  sameAs: person.sameAs,
+};
+---
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content={siteMeta.locale} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={`${siteMeta.siteUrl}${image}`} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${siteMeta.siteUrl}${image}`} />
+    <JsonLd data={organizationSchema} />
+    <JsonLd data={personSchema} />
+    <slot name="head" />
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
