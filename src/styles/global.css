@@ -4,9 +4,12 @@
 :root {
   --bg1: #dbd9d2;
   --bg2color: #d4d1c8;
+  --bg-product: #cfcdc6;
   --primary: #fab842;
   --just-dark: #5c5958;
   --dark-baige: #a69684;
+  --orange-accent: #f25d34;
+  --brown-accent: #ba872c;
   --cardtxtbg: rgba(255, 245, 233, 0.8);
   --beigebg: #e5d7c7;
   --liteyell: #fde5ba;
