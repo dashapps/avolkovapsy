@@ -13,6 +13,7 @@
     "@astrojs/check": "latest",
     "@tailwindcss/postcss": "^4.3.1",
     "astro": "latest",
+    "cloudinary": "^2.10.0",
     "postcss": "^8.5.15",
     "tailwindcss": "latest",
     "typescript": "latest"
