@@ -28,7 +28,7 @@ const chips = [
 
     <h2 id="overload-title" class="overload-title" data-node-id="62:858">
       <span class="overload-title-line overload-title-line--main">Ты справляешься</span>
-      <span class="overload-title-line overload-title-line--sub">но какой ценой?</span>
+      <span class="overload-title-line overload-title-line--accent">но какой ценой?</span>
     </h2>
     <div class="overload__line overload__line--1" aria-hidden="true"></div>
     <div class="overload__line overload__line--2" aria-hidden="true"></div>
@@ -54,12 +54,12 @@ const chips = [
   const revealObserver = new IntersectionObserver(
     ([entry]) => {
       if (!overload) return;
-      if (entry.isIntersecting) {
+      if (entry.isIntersecting && entry.intersectionRatio >= 0.3) {
         overload.classList.add('is-visible');
         revealObserver.disconnect();
       }
     },
-    { threshold: 0.24 }
+    { threshold: [0, 0.3] }
   );
 
   if (overload) {
@@ -145,21 +145,21 @@ const chips = [
   font-size: 90px;
   left: 233px;
   top: 36px;
-  transform: translateX(-48px);
+  transform: translate3d(-72px, 0, 0);
 }
 
-.overload-title-line--sub {
+.overload-title-line--accent {
   color: var(--dark-baige, #a69684);
   font-size: 68px;
   left: 233px;
   top: 120px;
-  transform: translateX(48px);
+  transform: translate3d(72px, 0, 0);
 }
 
 .overload.is-visible .overload-title-line {
   opacity: 1;
-  transform: translateX(0);
-  transition: opacity 160ms ease, transform 480ms cubic-bezier(.2, .8, .2, 1);
+  transform: translate3d(0, 0, 0);
+  transition: opacity 320ms ease, transform 520ms cubic-bezier(.2, .8, .2, 1);
 }
 
 .overload__line {
@@ -240,7 +240,7 @@ const chips = [
   .overload__image { height: 641px; left: 434px; top: 65px; width: 563px; }
   .overload__panel { height: 396px; left: 65px; top: 177px; width: 872px; }
   .overload-title-line--main { font-size: 68px; left: 90px; top: 29px; }
-  .overload-title-line--sub { font-size: 42px; left: 176px; top: 117px; }
+  .overload-title-line--accent { font-size: 42px; left: 176px; top: 117px; }
   .overload__line { left: 0; top: 86px; width: 910px; }
   .overload__line--2 { display: block; top: 152px; }
   .overload__side-text { height: 56px; left: 142px; top: 605px; width: 292px; }
@@ -259,7 +259,7 @@ const chips = [
   .overload__image { height: 551px; left: 47px; top: 5px; width: 427px; }
   .overload__panel { height: 552px; left: 65px; top: 140px; width: 355px; }
   .overload-title-line--main { font-size: 36px; left: 26.58px; top: 28px; }
-  .overload-title-line--sub { font-size: 24px; left: 12px; top: 56px; }
+  .overload-title-line--accent { font-size: 24px; left: 12px; top: 56px; }
   .overload__line { left: 0; top: 84.91px; width: 390px; }
   .overload__line--2 { display: none; }
   .overload__side-text { height: 51px; left: 40px; top: 769px; width: 339px; }
