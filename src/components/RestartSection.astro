@@ -28,6 +28,28 @@ if (!sectionAssets?.desktop || !sectionAssets?.tablet || !sectionAssets?.mobile)
     </p>
   </div>
 </section>
+<script>
+  const restartSection = document.querySelector<HTMLElement>('[data-restart-section]');
+  const restartMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  if (restartSection) {
+    if (restartMotionQuery.matches || !('IntersectionObserver' in window)) {
+      restartSection.classList.add('is-visible');
+    } else {
+      const restartObserver = new IntersectionObserver(
+        ([entry]) => {
+          if (entry.isIntersecting) {
+            restartSection.classList.add('is-visible');
+            restartObserver.disconnect();
+          }
+        },
+        { threshold: 0.3 }
+      );
+
+      restartObserver.observe(restartSection);
+    }
+  }
+</script>
 
 <style>
   .restart,
