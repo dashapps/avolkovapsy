@@ -10,10 +10,10 @@ if (!overloadAssets.desktop || !overloadAssets.tablet || !overloadAssets.mobile)
 const chips = [
   'Голова постоянно занята задачами.',
   'Отдых не даёт ощущения восстановления.',
-  'На простые решения уходит больше сил, чем раньше.',
+  'На\u00A0простые решения уходит больше сил, чем раньше.',
   'Появляется раздражение, усталость или внутренний шум.',
   'Ошибки возникают там, где раньше всё было очевидно.',
-  'Кажется, что энергии хватает только на обязательное.',
+  'Кажется, что энергии хватает только на\u00A0обязательное.',
 ];
 ---
 <section class="overload" aria-labelledby="overload-title" data-node-id="62:855">
@@ -34,7 +34,7 @@ const chips = [
     <div class="overload__line overload__line--2" aria-hidden="true"></div>
 
     <p class="overload__side-text" data-node-id="62:862">
-      Можно работать через разговор, через тело или соединять оба подхода — в зависимости от запроса и состояния.
+      Можно работать через\u00A0разговор, через\u00A0тело или соединять оба подхода — в\u00A0зависимости от\u00A0запроса и\u00A0состояния.
     </p>
 
     <div class="overload__chips" aria-label="Признаки перегрузки">
@@ -225,6 +225,7 @@ const chips = [
 .overload-chip--6 { --chip-delay: 630ms; --chip-rotate: 5deg; left: 677px; top: 598px; }
 
 @media (max-width: 1023px) {
+  .overload__image img { object-fit: cover; }
   .overload { height: 715px; min-height: 715px; }
   .overload__stage { height: 715px; width: 800px; }
   .overload__image { height: 641px; left: 434px; top: 65px; width: 563px; }
@@ -235,12 +236,12 @@ const chips = [
   .overload__line--2 { display: block; top: 152px; }
   .overload__side-text { height: 56px; left: 142px; top: 605px; width: 292px; }
   .overload-chip { font-size: 16px; padding: 12px 36px; }
-  .overload-chip--1 { left: 39px; top: 140px; }
-  .overload-chip--2 { left: 31px; top: 219px; }
-  .overload-chip--3 { --chip-rotate: -3deg; left: 28px; top: 302px; }
-  .overload-chip--4 { --chip-rotate: -2deg; left: 312px; top: 375px; }
-  .overload-chip--5 { --chip-rotate: 5deg; left: 280px; top: 532px; }
-  .overload-chip--6 { --chip-rotate: -3deg; left: 88px; top: 439px; }
+  .overload-chip--1 { left: 46.81px; top: 140px; }
+  .overload-chip--2 { left: 35.7px; top: 219px; }
+  .overload-chip--3 { --chip-rotate: -3deg; left: 312px; top: 392px; }
+  .overload-chip--4 { --chip-rotate: -3deg; left: 88px; top: 466.37px; }
+  .overload-chip--5 { --chip-rotate: -3deg; left: 28px; top: 328.32px; }
+  .overload-chip--6 { --chip-rotate: 5deg; left: 283.92px; top: 532px; }
 }
 
 @media (max-width: 767px) {
@@ -254,12 +255,12 @@ const chips = [
   .overload__line--2 { display: none; }
   .overload__side-text { height: 51px; left: 40px; top: 769px; width: 339px; }
   .overload-chip { font-size: 16px; max-width: 330px; padding: 12px 36px; white-space: normal; }
-  .overload-chip--1 { left: 6px; top: 160px; }
-  .overload-chip--2 { left: 22px; top: 236px; }
-  .overload-chip--3 { left: 6px; top: 316px; max-width: 328px; }
-  .overload-chip--4 { left: 6px; top: 471px; max-width: 325px; }
-  .overload-chip--5 { left: 51px; top: 647px; max-width: 320px; }
-  .overload-chip--6 { left: 3px; top: 548px; max-width: 330px; }
+  .overload-chip--1 { left: 13.81px; top: 160px; }
+  .overload-chip--2 { left: 26.7px; top: 236px; }
+  .overload-chip--3 { left: 6px; top: 482.24px; max-width: 328px; }
+  .overload-chip--4 { left: 3px; top: 568.04px; max-width: 325px; }
+  .overload-chip--5 { left: 6px; top: 334.42px; max-width: 320px; }
+  .overload-chip--6 { left: 56.61px; top: 647px; max-width: 330px; }
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -23,8 +23,8 @@ if (!sectionAssets?.desktop || !sectionAssets?.tablet || !sectionAssets?.mobile)
     </h2>
     <div class="restart-line" aria-hidden="true"></div>
     <p class="restart-bottom">
-      Ты уже платишь за&nbsp;перегруз.<br class="restart-bottom-break" />
-      Возможно, просто ещё не&nbsp;считаешь эту цену.
+      Ты уже платишь<br class="restart-bottom-break" />
+      за&nbsp;перегруз. Возможно, просто ещё не&nbsp;считаешь эту цену.
     </p>
   </div>
 </section>
@@ -192,6 +192,8 @@ if (!sectionAssets?.desktop || !sectionAssets?.tablet || !sectionAssets?.mobile)
   }
 
   @media (max-width: 1023px) {
+    .restart-image img { object-fit: cover; }
+
     .restart {
       height: 741px;
       min-height: 741px;
