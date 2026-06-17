@@ -1,4 +1,5 @@
 import { mkdir, writeFile } from 'node:fs/promises';
+import { existsSync, readFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { v2 as cloudinary } from 'cloudinary';
@@ -19,12 +20,35 @@ const SIDE_MARKERS = {
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const outputPath = resolve(__dirname, '../src/data/assets.ts');
+const envPaths = [resolve(__dirname, '../.env'), resolve(__dirname, '../.env.local')];
+
+function loadLocalEnv() {
+  for (const envPath of envPaths) {
+    if (!existsSync(envPath)) continue;
+
+    const content = readFileSync(envPath, 'utf8');
+    for (const line of content.split(/\r?\n/)) {
+      const trimmed = line.trim();
+      if (!trimmed || trimmed.startsWith('#')) continue;
+
+      const separatorIndex = trimmed.indexOf('=');
+      if (separatorIndex === -1) continue;
+
+      const key = trimmed.slice(0, separatorIndex).trim();
+      const rawValue = trimmed.slice(separatorIndex + 1).trim();
+      if (!REQUIRED_ENV.includes(key) || process.env[key]) continue;
+
+      process.env[key] = rawValue.replace(/^(['\"])(.*)\1$/, '$2');
+    }
+  }
+}
 
 function envStatus() {
   return Object.fromEntries(REQUIRED_ENV.map((key) => [key, Boolean(process.env[key])]));
 }
 
 function assertEnv() {
+  loadLocalEnv();
   const status = envStatus();
   const missing = Object.entries(status).filter(([, present]) => !present).map(([key]) => key);
   if (missing.length > 0) {
@@ -178,11 +202,20 @@ export const assets = ${tsString(assets)} as {
   await writeFile(outputPath, content);
 }
 
+async function verifyAdminApi() {
+  if (typeof cloudinary.api.ping !== 'function') return;
+
+  await cloudinary.api.ping();
+  console.log('Cloudinary Admin API reachable: yes');
+}
+
 async function main() {
   const canSync = assertEnv();
   const cloudinaryAssets = Object.fromEntries(Object.keys(FOLDERS).map((key) => [key, []]));
 
   if (canSync) {
+    await verifyAdminApi();
+
     for (const [key, folder] of Object.entries(FOLDERS)) {
       const resources = await readFolder(folder);
       cloudinaryAssets[key] = resources.filter(isActiveImage).map((resource) => normalizeAsset(resource, folder));

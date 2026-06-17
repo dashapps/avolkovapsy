@@ -46,7 +46,7 @@ export const assets = {
 };
 
 export const cloudinaryAssetSync = {
-  "generatedAt": "2026-06-17T09:48:41.772Z",
+  "generatedAt": "2026-06-17T10:18:45.451Z",
   "folders": {
     "desktop": "Avolkovapsy/Desktop",
     "tablet": "Avolkovapsy/Tablet",

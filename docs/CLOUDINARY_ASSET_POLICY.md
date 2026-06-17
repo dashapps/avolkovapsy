@@ -28,4 +28,7 @@ Required environment variables:
 - `CLOUDINARY_API_KEY`
 - `CLOUDINARY_API_SECRET`
 
+
+The script reads Cloudinary credentials from the process environment first, then from local `.env` / `.env.local` files when those variables are not already set. Keep real values local and uncommitted.
+
 Never commit Cloudinary secrets or print `CLOUDINARY_API_SECRET`.
