@@ -59,6 +59,17 @@ Avolkovapsy/Mobile/
 
 Hero requires real exported images from Figma.
 
+Required Cloudinary Hero URLs (static source of truth):
+
+```ts
+assets.hero.desktop.leftImage = "https://res.cloudinary.com/dffqytj06/image/upload/f_auto/q_auto/v1781681163/Rectangle_3_klsn6h.png";
+assets.hero.desktop.rightImage = "https://res.cloudinary.com/dffqytj06/image/upload/f_auto/q_auto/v1781681161/Rectangle_2_onruuc.png";
+assets.hero.tablet.leftImage = "https://res.cloudinary.com/dffqytj06/image/upload/f_auto/q_auto/v1781681362/Rectangle_3_qeak2y.png";
+assets.hero.tablet.rightImage = "https://res.cloudinary.com/dffqytj06/image/upload/f_auto/q_auto/v1781681357/Rectangle_2_wnrxar.png";
+assets.hero.mobile.leftImage = "https://res.cloudinary.com/dffqytj06/image/upload/f_auto/q_auto/v1781681392/Rectangle_3_ercxll.png";
+assets.hero.mobile.rightImage = "https://res.cloudinary.com/dffqytj06/image/upload/f_auto/q_auto/v1781681396/Rectangle_2_wb5ufy.png";
+```
+
 Required image assets:
 
 export const assets = {
