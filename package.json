@@ -1,0 +1,23 @@
+{
+  "name": "avolkovapsy",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "@astrojs/check": "latest",
+    "@tailwindcss/postcss": "^4.3.1",
+    "astro": "latest",
+    "postcss": "^8.5.15",
+    "tailwindcss": "latest",
+    "typescript": "latest"
+  },
+  "overrides": {
+    "vite": "^7"
+  }
+}

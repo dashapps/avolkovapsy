@@ -1,0 +1,12 @@
+---
+import { PRIMARY_CONTACT_LINK } from '@/data/site';
+---
+<header class="container" style="padding:16px 0; position:sticky; top:0; z-index:20;">
+  <nav class="card" aria-label="Основная навигация" style="display:flex; align-items:center; justify-content:space-between; gap:16px; padding:10px 12px 10px 18px; backdrop-filter: blur(18px);">
+    <a href="#top" style="font-weight:900; line-height:.9; text-transform:uppercase; text-decoration:none;">Александра<br/>Волкова</a>
+    <div style="display:flex; gap:8px; align-items:center;">
+      <a class="btn btn-dark" href="#schedule" style="display:none;">Расписание</a>
+      <a class="btn btn-primary" href={PRIMARY_CONTACT_LINK}>Записаться</a>
+    </div>
+  </nav>
+</header>

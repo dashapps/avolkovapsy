@@ -1,0 +1,7 @@
+---
+import JsonLd from '@/components/seo/JsonLd.astro';
+import { faqItems } from '@/data/faq';
+const faqSchema = {'@context':'https://schema.org','@type':'FAQPage',mainEntity:faqItems.map((item)=>({'@type':'Question',name:item.question,acceptedAnswer:{'@type':'Answer',text:item.answer}}))};
+---
+<section class="section" aria-labelledby="faq-title"><JsonLd data={faqSchema} /><div class="container faq"><h2 id="faq-title">Вопросы</h2><div>{faqItems.map((item) => (<details class="card"><summary>{item.question}</summary><p>{item.answer}</p></details>))}</div></div></section>
+<style>.faq{max-width:860px}h2{font-size:clamp(2.4rem,6vw,5rem);text-align:center}details{padding:0 20px;margin:10px 0;overflow:hidden}summary{cursor:pointer;font-weight:900;padding:18px 0;list-style:none;display:flex;justify-content:space-between;gap:18px}summary:after{content:'+'}details[open] summary:after{content:'–'}p{margin:0 0 18px;color:var(--color-muted);line-height:1.6}</style>

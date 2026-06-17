@@ -1,0 +1,5 @@
+---
+import { galleryItems } from '@/data/gallery';
+---
+<section class="section gallery" aria-labelledby="gallery-title"><div class="container"><h2 id="gallery-title">Галерея событий</h2><div class="gallery__rail" tabindex="0" aria-label="Горизонтальная галерея событий">{galleryItems.map((item) => (<figure class="card"><img src={item.src} alt={item.alt} loading="lazy" /><figcaption>{item.caption}</figcaption></figure>))}</div></div></section>
+<style>.gallery{background:var(--color-warm)}h2{font-size:clamp(2rem,5vw,4rem);margin:0}.gallery__rail{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:24px 0 12px}.gallery figure{min-width:min(78vw,260px);padding:10px;scroll-snap-align:start;margin:0}.gallery img{width:100%;height:280px;object-fit:cover;border-radius:20px;display:block}.gallery figcaption{padding:12px;font-weight:800}</style>
