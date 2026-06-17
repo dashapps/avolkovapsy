@@ -15,13 +15,14 @@ const { class: className = '' } = Astro.props;
 
 <style>
 .logo-battery {
-  display: inline-block;
-  flex: 0 0 auto;
+  animation: battery-soft-wobble 3s ease-in-out infinite;
   height: 55px;
-  position: relative;
+  pointer-events: none;
+  position: absolute;
   transform: rotate(35deg);
   transform-origin: center;
   width: 19px;
+  z-index: 1;
 }
 
 .logo-battery__body {
@@ -62,5 +63,26 @@ const { class: className = '' } = Astro.props;
 .logo-battery__cap-bottom {
   bottom: 0;
   transform: rotate(180deg);
+}
+
+@keyframes battery-soft-wobble {
+  0%, 78%, 100% {
+    transform: rotate(35deg) translate3d(0, 0, 0);
+  }
+  84% {
+    transform: rotate(32deg) translate3d(-1px, 1px, 0);
+  }
+  90% {
+    transform: rotate(38deg) translate3d(1px, -1px, 0);
+  }
+  95% {
+    transform: rotate(35deg) translate3d(0, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .logo-battery {
+    animation: none;
+  }
 }
 </style>
