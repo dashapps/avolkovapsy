@@ -40,7 +40,6 @@ import { PRIMARY_CONTACT_LINK } from '@/data/site';
 
 <style>
 .hero {
-  --hero-scale: min(1, calc((100vw - 32px) / 1280));
   --bg1: #dbd9d2;
   --primary: #fab842;
   --just-dark: #5c5958;
@@ -52,19 +51,23 @@ import { PRIMARY_CONTACT_LINK } from '@/data/site';
   --radius-panel: 24px;
   --radius-button: 24px;
   background: var(--bg1);
-  display: grid;
-  justify-items: center;
+  height: 757px;
+  min-height: 757px;
   overflow: hidden;
   padding: 0;
+  position: relative;
+  width: 100%;
 }
 
 .hero__stage {
   background: var(--bg1);
-  block-size: calc(757px * var(--hero-scale));
-  inline-size: min(1280px, 100vw);
+  height: 757px;
+  left: 50%;
   overflow: hidden;
-  position: relative;
-  transform-origin: top center;
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+  width: 1280px;
 }
 
 .hero__visual-layer,
@@ -97,10 +100,10 @@ import { PRIMARY_CONTACT_LINK } from '@/data/site';
 }
 
 .hero__image--left {
-  height: calc(736px * var(--hero-scale));
-  left: calc(0px * var(--hero-scale));
-  top: calc(10.5px * var(--hero-scale));
-  width: calc(660px * var(--hero-scale));
+  height: 736px;
+  left: 0;
+  top: 10.5px;
+  width: 660px;
 }
 
 .hero__image--left img {
@@ -111,10 +114,10 @@ import { PRIMARY_CONTACT_LINK } from '@/data/site';
 }
 
 .hero__image--right {
-  height: calc(710px * var(--hero-scale));
-  left: calc(752px * var(--hero-scale));
-  top: calc(23.5px * var(--hero-scale));
-  width: calc(528px * var(--hero-scale));
+  height: 710px;
+  left: 752px;
+  top: 23.5px;
+  width: 528px;
 }
 
 .hero__image--right img {
@@ -130,20 +133,20 @@ import { PRIMARY_CONTACT_LINK } from '@/data/site';
   border-left: 1px solid var(--dark-baige);
   border-radius: 0 0 var(--radius-panel) var(--radius-panel);
   border-right: 1px solid var(--dark-baige);
-  height: calc(281px * var(--hero-scale));
-  left: calc(340px * var(--hero-scale));
+  height: 281px;
+  left: 340px;
   top: 0;
-  width: calc(604px * var(--hero-scale));
+  width: 604px;
 }
 
 .hero__panel--bottom {
   background: var(--panel-bottom);
   border: 1px solid var(--dark-baige);
   border-radius: var(--radius-panel);
-  height: calc(225.155px * var(--hero-scale));
-  left: calc(324px * var(--hero-scale));
-  top: calc(437.766px * var(--hero-scale));
-  width: calc(633px * var(--hero-scale));
+  height: 225.155px;
+  left: 324px;
+  top: 437.766px;
+  width: 633px;
 }
 
 .hero__intro {
@@ -151,14 +154,14 @@ import { PRIMARY_CONTACT_LINK } from '@/data/site';
   display: flex;
   flex-direction: column;
   font-family: var(--font-main, Onest, sans-serif);
-  font-size: calc(21px * var(--hero-scale));
+  font-size: 21px;
   font-weight: 400;
-  gap: calc(28px * var(--hero-scale));
-  height: calc(157.503px * var(--hero-scale));
-  left: calc(407px * var(--hero-scale));
+  gap: 28px;
+  height: 157.503px;
+  left: 407px;
   line-height: 1.3;
-  top: calc(54.052px * var(--hero-scale));
-  width: calc(467px * var(--hero-scale));
+  top: 54.052px;
+  width: 467px;
   z-index: 2;
 }
 
@@ -170,11 +173,11 @@ import { PRIMARY_CONTACT_LINK } from '@/data/site';
   align-items: center;
   display: flex;
   flex-direction: column;
-  gap: calc(26px * var(--hero-scale));
-  height: calc(319.234px * var(--hero-scale));
-  left: calc(234px * var(--hero-scale));
-  top: calc(334.174px * var(--hero-scale));
-  width: calc(811px * var(--hero-scale));
+  gap: 26px;
+  height: 319.234px;
+  left: 234px;
+  top: 334.174px;
+  width: 811px;
   z-index: 3;
 }
 
@@ -186,7 +189,7 @@ import { PRIMARY_CONTACT_LINK } from '@/data/site';
 .hero h1 {
   color: var(--cardtxtbg);
   font-family: var(--font-main, Onest, sans-serif);
-  font-size: calc(100px * var(--hero-scale));
+  font-size: 100px;
   font-weight: 900;
   letter-spacing: -0.045em;
   line-height: 1.3;
@@ -199,7 +202,7 @@ import { PRIMARY_CONTACT_LINK } from '@/data/site';
 .hero__title-group p {
   color: var(--just-dark);
   font-family: var(--font-main, Onest, sans-serif);
-  font-size: calc(40px * var(--hero-scale));
+  font-size: 40px;
   font-weight: 400;
   line-height: 1.3;
   margin: 0;
@@ -209,10 +212,10 @@ import { PRIMARY_CONTACT_LINK } from '@/data/site';
 .hero__buttons {
   align-items: flex-start;
   display: flex;
-  gap: calc(24px * var(--hero-scale));
-  height: calc(94px * var(--hero-scale));
+  gap: 24px;
+  height: 94px;
   justify-content: center;
-  width: calc(637px * var(--hero-scale));
+  width: 637px;
 }
 
 .hero__button {
@@ -220,16 +223,16 @@ import { PRIMARY_CONTACT_LINK } from '@/data/site';
   border-radius: var(--radius-button);
   display: flex;
   font-family: var(--font-main, Onest, sans-serif);
-  font-size: calc(32px * var(--hero-scale));
+  font-size: 32px;
   font-weight: 600;
-  height: calc(78px * var(--hero-scale));
+  height: 78px;
   justify-content: center;
   line-height: 1.3;
-  padding: calc(18px * var(--hero-scale)) calc(24px * var(--hero-scale));
+  padding: 18px 24px;
   text-decoration: none;
   transition: transform 0.2s ease;
   white-space: nowrap;
-  width: calc(306.5px * var(--hero-scale));
+  width: 306.5px;
 }
 
 .hero__button:hover,
@@ -249,150 +252,152 @@ import { PRIMARY_CONTACT_LINK } from '@/data/site';
 
 @media (max-width: 1023px) {
   .hero {
-    --hero-scale: min(1, calc(100vw / 800));
+    height: 670px;
+    min-height: 670px;
   }
 
   .hero__stage {
-    block-size: calc(670px * var(--hero-scale));
-    inline-size: min(800px, 100vw);
+    height: 670px;
+    width: 800px;
   }
 
   .hero__image--left {
-    height: calc(650px * var(--hero-scale));
+    height: 650px;
     left: 0;
-    top: calc(10px * var(--hero-scale));
-    width: calc(412px * var(--hero-scale));
+    top: 10px;
+    width: 412px;
   }
 
   .hero__image--right {
-    height: calc(620px * var(--hero-scale));
-    left: calc(470px * var(--hero-scale));
-    top: calc(24px * var(--hero-scale));
-    width: calc(330px * var(--hero-scale));
+    height: 620px;
+    left: 470px;
+    top: 24px;
+    width: 330px;
   }
 
   .hero__panel--top {
-    height: calc(250px * var(--hero-scale));
-    left: calc(210px * var(--hero-scale));
-    width: calc(380px * var(--hero-scale));
+    height: 250px;
+    left: 210px;
+    width: 380px;
   }
 
   .hero__panel--bottom {
-    height: calc(198px * var(--hero-scale));
-    left: calc(96px * var(--hero-scale));
-    top: calc(430px * var(--hero-scale));
-    width: calc(608px * var(--hero-scale));
+    height: 198px;
+    left: 96px;
+    top: 430px;
+    width: 608px;
   }
 
   .hero__intro {
-    font-size: calc(18px * var(--hero-scale));
-    gap: calc(24px * var(--hero-scale));
-    left: calc(248px * var(--hero-scale));
-    top: calc(50px * var(--hero-scale));
-    width: calc(304px * var(--hero-scale));
+    font-size: 18px;
+    gap: 24px;
+    left: 248px;
+    top: 50px;
+    width: 304px;
   }
 
   .hero__headline {
-    gap: calc(22px * var(--hero-scale));
-    left: calc(68px * var(--hero-scale));
-    top: calc(340px * var(--hero-scale));
-    width: calc(664px * var(--hero-scale));
+    gap: 22px;
+    left: 68px;
+    top: 340px;
+    width: 664px;
   }
 
   .hero h1 {
-    font-size: calc(82px * var(--hero-scale));
+    font-size: 82px;
   }
 
   .hero__title-group p {
-    font-size: calc(34px * var(--hero-scale));
+    font-size: 34px;
   }
 
   .hero__buttons {
-    gap: calc(20px * var(--hero-scale));
-    width: calc(590px * var(--hero-scale));
+    gap: 20px;
+    width: 590px;
   }
 
   .hero__button {
-    font-size: calc(28px * var(--hero-scale));
-    height: calc(72px * var(--hero-scale));
-    width: calc(285px * var(--hero-scale));
+    font-size: 28px;
+    height: 72px;
+    width: 285px;
   }
 }
 
 @media (max-width: 600px) {
   .hero {
-    --hero-scale: min(1, calc(100vw / 390));
+    height: 690px;
+    min-height: 690px;
   }
 
   .hero__stage {
-    block-size: calc(690px * var(--hero-scale));
-    inline-size: min(390px, 100vw);
+    height: 690px;
+    width: 390px;
   }
 
   .hero__image--left {
-    height: calc(520px * var(--hero-scale));
-    left: calc(-58px * var(--hero-scale));
-    top: calc(128px * var(--hero-scale));
-    width: calc(294px * var(--hero-scale));
+    height: 520px;
+    left: -58px;
+    top: 128px;
+    width: 294px;
   }
 
   .hero__image--right {
-    height: calc(536px * var(--hero-scale));
-    left: calc(174px * var(--hero-scale));
-    top: calc(126px * var(--hero-scale));
-    width: calc(248px * var(--hero-scale));
+    height: 536px;
+    left: 174px;
+    top: 126px;
+    width: 248px;
   }
 
   .hero__panel--top {
-    height: calc(230px * var(--hero-scale));
-    left: calc(24px * var(--hero-scale));
-    width: calc(342px * var(--hero-scale));
+    height: 230px;
+    left: 24px;
+    width: 342px;
   }
 
   .hero__panel--bottom {
-    height: calc(178px * var(--hero-scale));
-    left: calc(16px * var(--hero-scale));
-    top: calc(478px * var(--hero-scale));
-    width: calc(358px * var(--hero-scale));
+    height: 178px;
+    left: 16px;
+    top: 478px;
+    width: 358px;
   }
 
   .hero__intro {
-    font-size: calc(16px * var(--hero-scale));
-    gap: calc(20px * var(--hero-scale));
-    left: calc(44px * var(--hero-scale));
-    top: calc(42px * var(--hero-scale));
-    width: calc(302px * var(--hero-scale));
+    font-size: 16px;
+    gap: 20px;
+    left: 44px;
+    top: 42px;
+    width: 302px;
   }
 
   .hero__headline {
-    gap: calc(18px * var(--hero-scale));
-    left: calc(11px * var(--hero-scale));
-    top: calc(376px * var(--hero-scale));
-    width: calc(368px * var(--hero-scale));
+    gap: 18px;
+    left: 11px;
+    top: 376px;
+    width: 368px;
   }
 
   .hero h1 {
-    font-size: calc(47px * var(--hero-scale));
+    font-size: 47px;
     letter-spacing: -0.04em;
     text-align: center;
-    text-shadow: calc(6px * var(--hero-scale)) calc(12px * var(--hero-scale)) calc(1px * var(--hero-scale)) rgba(176, 156, 134, 0.4);
+    text-shadow: 6px 12px 1px rgba(176, 156, 134, 0.4);
   }
 
   .hero__title-group p {
-    font-size: calc(28px * var(--hero-scale));
+    font-size: 28px;
   }
 
   .hero__buttons {
     flex-direction: column;
-    gap: calc(12px * var(--hero-scale));
+    gap: 12px;
     height: auto;
-    width: calc(306px * var(--hero-scale));
+    width: 306px;
   }
 
   .hero__button {
-    font-size: calc(24px * var(--hero-scale));
-    height: calc(62px * var(--hero-scale));
-    width: calc(306px * var(--hero-scale));
+    font-size: 24px;
+    height: 62px;
+    width: 306px;
   }
 }
 </style>
